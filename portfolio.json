@@ -1,0 +1,21 @@
+{
+  "schema_version": 1,
+  "name": "axiom-hub-ryan-vo",
+  "owner": "A220man",
+  "email": "ryandtvo@gmail.com",
+  "domain": "AI/ML developer tools",
+  "summary": "Work in progress: axiom-hub-ryan-vo",
+  "workflows": [
+    "Analyze frontend codebases to extract design tokens (type scale, color palette, spacing, component patterns)",
+    "Generate standardized DESIGN.md documentation from analysis results",
+    "Critique designs against craft floor rules with actionable findings and severity levels"
+  ],
+  "auth": "oidc-keycloak-saml-broker",
+  "llm_providers": [
+    "openai-compatible",
+    "anthropic",
+    "gemini",
+    "ollama"
+  ],
+  "status": "work-in-progress"
+}

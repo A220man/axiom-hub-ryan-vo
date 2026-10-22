@@ -1,0 +1,97 @@
+{
+  "schema_version": 1,
+  "current_feature": "core-skeleton",
+  "features": [
+    {
+      "id": "core-skeleton",
+      "title": "Core FastAPI/React skeleton with auth, DB, and one workflow",
+      "status": "done",
+      "acceptance": [
+        "FastAPI backend with SQLite, OIDC Keycloak auth, and /health endpoint",
+        "React + TypeScript + Vite frontend with login page and dashboard",
+        "CI workflow running backend tests, frontend build/test, and Docker builds",
+        "portfolio.json, README, LICENSE, CHANGELOG, .env.example, .gitignore",
+        "At least 12 backend tests and 3 frontend tests passing"
+      ],
+      "implementation": [
+        "backend/app/main.py",
+        "backend/app/api/",
+        "backend/app/services/",
+        "backend/app/models/",
+        "backend/app/core/",
+        "backend/tests/",
+        "frontend/src/",
+        "frontend/package.json",
+        "compose.yaml",
+        ".github/workflows/ci.yml"
+      ],
+      "tests": [
+        "backend/tests/test_health.py",
+        "backend/tests/test_auth.py",
+        "backend/tests/test_workflow.py",
+        "frontend/src/__tests__/"
+      ]
+    },
+    {
+      "id": "design-system-analysis",
+      "title": "Design system analysis workflow (AI/ML domain engine)",
+      "status": "done",
+      "acceptance": [
+        "POST /api/v1/analyze/design-system extracts tokens from frontend codebase",
+        "Returns type scale, color palette, spacing, component patterns",
+        "Deterministic offline core works without LLM key",
+        "LLM explanations opt-in, labeled advisory, grounded in actual records"
+      ],
+      "implementation": [
+        "backend/app/services/design_analyzer.py",
+        "backend/app/api/analyze.py",
+        "frontend/src/pages/AnalyzePage.tsx",
+        "frontend/src/pages/AnalyzeDetailPage.tsx"
+      ],
+      "tests": [
+        "backend/tests/test_workflow.py::TestDesignAnalysisWorkflow",
+        "frontend/src/__tests__/AnalyzePage.test.tsx"
+      ]
+    },
+    {
+      "id": "design-document-generation",
+      "title": "DESIGN.md document generation workflow",
+      "status": "done",
+      "acceptance": [
+        "POST /api/v1/generate/design-doc creates DESIGN.md from analysis",
+        "Follows 8-section format with token schema",
+        "Export and download workflow in UI"
+      ],
+      "implementation": [
+        "backend/app/services/design_document.py",
+        "backend/app/api/generate.py",
+        "frontend/src/pages/DocumentsPage.tsx",
+        "frontend/src/pages/DocumentDetailPage.tsx"
+      ],
+      "tests": [
+        "backend/tests/test_workflow.py::TestDesignDocumentWorkflow",
+        "frontend/src/__tests__/DashboardPage.test.tsx"
+      ]
+    },
+    {
+      "id": "design-critique-workflow",
+      "title": "Design critique and improvement workflow",
+      "status": "done",
+      "acceptance": [
+        "POST /api/v1/critique/design evaluates against craft floor rules",
+        "Returns actionable findings with severity and fix guidance",
+        "UI shows findings with accept/reject per issue"
+      ],
+      "implementation": [
+        "backend/app/services/design_critique.py",
+        "backend/app/api/critique.py",
+        "frontend/src/pages/CritiquesPage.tsx",
+        "frontend/src/pages/CritiqueDetailPage.tsx"
+      ],
+      "tests": [
+        "backend/tests/test_workflow.py::TestDesignCritiqueWorkflow",
+        "frontend/src/__tests__/DashboardPage.test.tsx"
+      ]
+    }
+  ]
+}
