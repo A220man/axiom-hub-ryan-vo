@@ -2,10 +2,10 @@
 
 import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { critiqueApi } from '../../api/client';
-import { Card, CardHeader, Button } from '../ui';
+import { critiqueApi } from '../api/client';
+import { Card, CardHeader, Button } from '../components/ui';
 import { AlertTriangle, Loader2, ChevronDown, ChevronUp, Trash2, CheckCircle, XCircle, AlertCircle, Info } from 'lucide-react';
-import { toast } from '../ui/Toast';
+import { toast } from '../components/ui/Toast';
 import type { DesignCritique, Finding } from '../../types';
 
 export const CritiqueDetailPage = () => {

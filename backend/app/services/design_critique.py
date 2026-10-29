@@ -191,6 +191,25 @@ class DesignCritiqueEngine:
                     waivable=self.RULES["color-token-violation"]["waivable"],
                 ))
 
+        # Check for cramped padding (elements with no/minimal padding)
+        padding_matches = re.findall(r'padding(?:-(top|right|bottom|left))?:\s*([^;]+)', css)
+        for prop, value in padding_matches:
+            value = value.strip()
+            try:
+                px_val = self._parse_length(value)
+                if px_val is not None and px_val < 4:  # Less than 4px is cramped
+                    self.findings.append(Finding(
+                        rule_id="cramped-padding",
+                        title=self.RULES["cramped-padding"]["title"],
+                        description=self.RULES["cramped-padding"]["description"],
+                        severity=self.RULES["cramped-padding"]["severity"],
+                        element=f"padding{'-' + prop if prop else ''}: {value}",
+                        suggestion="Add adequate padding (minimum 4px / 0.25rem) for visual breathing room",
+                        waivable=self.RULES["cramped-padding"]["waivable"],
+                    ))
+            except Exception:
+                pass
+
     def _analyze_html(self, html: str) -> None:
         """Analyze HTML for accessibility and structural issues."""
         # Check for focus rings (simplified)

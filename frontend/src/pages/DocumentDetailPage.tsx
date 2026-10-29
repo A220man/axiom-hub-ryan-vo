@@ -2,10 +2,10 @@
 
 import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { generateApi } from '../../api/client';
-import { Card, CardHeader, Button } from '../ui';
+import { generateApi } from '../api/client';
+import { Card, CardHeader, Button } from '../components/ui';
 import { Download, Copy, Edit, Trash2, Loader2, ChevronDown, ChevronUp } from 'lucide-react';
-import { toast } from '../ui/Toast';
+import { toast } from '../components/ui/Toast';
 import type { DesignDocument } from '../../types';
 
 export const DocumentDetailPage = () => {

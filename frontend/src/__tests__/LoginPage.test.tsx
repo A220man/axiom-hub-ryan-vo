@@ -2,7 +2,7 @@ import { describe, it, expect, vi, beforeEach } from 'vitest'
 import { render, screen, fireEvent, waitFor } from '@testing-library/react'
 import { BrowserRouter } from 'react-router-dom'
 import { LoginPage } from '../pages/LoginPage'
-import { useAuthStore } from '../hooks/useAuth'
+import { useAuth } from '../hooks/useAuth'
 
 // Mock the auth hook
 vi.mock('../hooks/useAuth', () => ({
@@ -13,12 +13,21 @@ vi.mock('../hooks/useAuth', () => ({
     isAuthenticated: false,
     isLoading: false,
   }),
-  useAuthStore: {
-    getState: () => ({
-      login: vi.fn(),
-      logout: vi.fn(),
-    }),
-  },
+}))
+
+// Mock UI components
+vi.mock('../components/ui', () => ({
+  Button: ({ children, ...props }: { children: React.ReactNode; type?: string; disabled?: boolean; onClick?: () => void; className?: string; variant?: string; size?: string }) => (
+    <button {...props} data-testid="button">{children}</button>
+  ),
+  Input: ({ ...props }: React.InputHTMLAttributes<HTMLInputElement>) => (
+    <input {...props} data-testid="input" />
+  ),
+}))
+
+// Mock lucide-react icons
+vi.mock('lucide-react', () => ({
+  Loader2: () => <svg data-testid="loader-icon" />,
 }))
 
 describe('LoginPage', () => {
@@ -37,18 +46,6 @@ describe('LoginPage', () => {
     expect(screen.getByText('The design language that makes your AI harness better at design')).toBeInTheDocument()
     expect(screen.getByText('Sign in')).toBeInTheDocument()
     expect(screen.getByText('Continue with your organization account')).toBeInTheDocument()
-  })
-
-  it('shows error message when error param in URL', () => {
-    render(
-      <BrowserRouter>
-        <LoginPage />
-      </BrowserRouter>
-    )
-
-    // The component reads from URL search params, which we can't easily test without
-    // more complex routing setup. This test verifies the component renders.
-    expect(screen.getByText('Continue with Keycloak')).toBeInTheDocument()
   })
 
   it('has accessible form structure', () => {

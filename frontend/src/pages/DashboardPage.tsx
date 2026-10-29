@@ -2,10 +2,10 @@
 
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { analyzeApi, generateApi, critiqueApi } from '../../api/client';
-import { Card, CardHeader, Button } from '../ui';
+import { analyzeApi, generateApi, critiqueApi } from '../api/client';
+import { Card, CardHeader, Button } from '../components/ui';
 import { Search, FileText, AlertTriangle, Plus, FolderOpen, Eye, Download, Trash2 } from 'lucide-react';
-import { toast } from '../ui/Toast';
+import { toast } from '../components/ui/Toast';
 import type { DesignAnalysis, DesignDocument, DesignCritique } from '../../types';
 
 export const DashboardPage = () => {

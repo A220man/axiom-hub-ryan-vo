@@ -2,10 +2,10 @@
 
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { critiqueApi, analyzeApi, generateApi } from '../../api/client';
-import { Card, CardHeader, Button, Input } from '../ui';
+import { critiqueApi, analyzeApi, generateApi } from '../api/client';
+import { Card, CardHeader, Button, Input } from '../components/ui';
 import { AlertTriangle, Plus, Loader2, Eye, Trash2, ArrowRight } from 'lucide-react';
-import { toast } from '../ui/Toast';
+import { toast } from '../components/ui/Toast';
 import type { DesignCritique, DesignAnalysis, DesignDocument } from '../../types';
 
 export const CritiquesPage = () => {

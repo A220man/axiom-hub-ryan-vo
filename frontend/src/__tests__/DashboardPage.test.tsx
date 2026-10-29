@@ -1,5 +1,5 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest'
-import { render, screen, fireEvent, waitFor } from '@testing-library/react'
+import { render, screen, waitFor } from '@testing-library/react'
 import { BrowserRouter } from 'react-router-dom'
 import { DashboardPage } from '../pages/DashboardPage'
 import { analyzeApi, generateApi, critiqueApi } from '../api/client'
@@ -17,6 +17,23 @@ vi.mock('../api/client', () => ({
   },
 }))
 
+// Mock UI components
+vi.mock('../components/ui', () => ({
+  Card: ({ children, padding = 'md', className = '' }: { children: React.ReactNode; padding?: string; className?: string }) => (
+    <div data-testid="card" className={className}>{children}</div>
+  ),
+  CardHeader: ({ title, description, action, className = '' }: { title: string; description?: string; action?: React.ReactNode; className?: string }) => (
+    <div data-testid="card-header" className={className}>
+      <h3>{title}</h3>
+      {description && <p>{description}</p>}
+      {action && <div>{action}</div>}
+    </div>
+  ),
+  Button: ({ children, ...props }: { children: React.ReactNode; type?: string; disabled?: boolean; onClick?: () => void; className?: string; variant?: string; size?: string }) => (
+    <button {...props} data-testid="button">{children}</button>
+  ),
+}))
+
 // Mock toast
 vi.mock('../components/ui/Toast', () => ({
   toast: {
@@ -25,6 +42,18 @@ vi.mock('../components/ui/Toast', () => ({
     warning: vi.fn(),
     info: vi.fn(),
   },
+}))
+
+// Mock lucide-react icons
+vi.mock('lucide-react', () => ({
+  Search: () => <svg data-testid="search-icon" />,
+  FileText: () => <svg data-testid="file-text-icon" />,
+  AlertTriangle: () => <svg data-testid="alert-triangle-icon" />,
+  Plus: () => <svg data-testid="plus-icon" />,
+  FolderOpen: () => <svg data-testid="folder-open-icon" />,
+  Eye: () => <svg data-testid="eye-icon" />,
+  Download: () => <svg data-testid="download-icon" />,
+  Trash2: () => <svg data-testid="trash2-icon" />,
 }))
 
 describe('DashboardPage', () => {
@@ -59,9 +88,9 @@ describe('DashboardPage', () => {
     )
 
     await waitFor(() => {
-      expect(screen.getByText('No analyses yet')).toBeInTheDocument()
-      expect(screen.getByText('No documents yet')).toBeInTheDocument()
-      expect(screen.getByText('No critiques yet')).toBeInTheDocument()
+      expect(screen.getByText('No analyses yet. Create your first analysis to get started.')).toBeInTheDocument()
+      expect(screen.getByText('No documents yet. Generate a DESIGN.md from an analysis.')).toBeInTheDocument()
+      expect(screen.getByText('No critiques yet. Evaluate a design against craft floor rules.')).toBeInTheDocument()
     })
   })
 

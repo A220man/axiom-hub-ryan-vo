@@ -2,7 +2,11 @@
   "name": "axiom-hub-ryan-vo-frontend",
   "version": "1.0.0",
   "description": "The design language that makes your AI harness better at design - Frontend",
-  "author": "Ryan Vo <ryandtvo@gmail.com>",
+  "author": {
+    "name": "Ryan Vo",
+    "email": "ryandtvo@gmail.com",
+    "url": "https://github.com/A220man"
+  },
   "type": "module",
   "scripts": {
     "dev": "vite",
