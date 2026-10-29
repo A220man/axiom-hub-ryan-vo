@@ -2,10 +2,10 @@
 
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { analyzeApi } from '../../api/client';
-import { Card, CardHeader, Button, Input } from '../ui';
+import { analyzeApi } from '../api/client';
+import { Card, CardHeader, Button, Input } from '../components/ui';
 import { Search, Loader2, ArrowRight } from 'lucide-react';
-import { toast } from '../ui/Toast';
+import { toast } from '../components/ui/Toast';
 import type { DesignAnalysis } from '../../types';
 
 export const AnalyzePage = () => {

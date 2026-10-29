@@ -4,7 +4,7 @@ import React from 'react';
 import { Outlet, NavLink, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../hooks/useAuth';
 import { LayoutDashboard, FileText, Search, AlertTriangle, LogOut, User, Menu, X } from 'lucide-react';
-import { Button } from '../ui';
+import { Button } from '../components/ui';
 
 export const Layout = () => {
   const { user, isAuthenticated, logout } = useAuth();

@@ -366,4 +366,21 @@ class TestDesignCritiqueWorkflow:
         assert focus_missing["severity"] == "error"
 
 
+    @pytest.mark.asyncio
+    async def test_critique_engine_cramped_padding(self):
+        """Test that critique engine detects cramped padding."""
+        engine = DesignCritiqueEngine({
+            "type_scale": {},
+            "color_palette": {},
+            "spacing": {},
+            "component_patterns": {},
+        })
+        css = ".box { padding: 0; } .card { padding-top: 2px; padding-bottom: 8px; }"
+        results = engine.critique(css_content=css)
+        cramped = [f for f in results["findings"] if f["rule_id"] == "cramped-padding"]
+        assert len(cramped) >= 2
+        # Verify severity is ERROR
+        for f in cramped:
+            assert f["severity"] == "error"
+
 from sqlalchemy import select

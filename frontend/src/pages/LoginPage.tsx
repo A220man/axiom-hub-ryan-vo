@@ -2,8 +2,8 @@
 
 import React, { useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
-import { useAuth } from '../../hooks/useAuth';
-import { Button, Input } from '../ui';
+import { useAuth } from '../hooks/useAuth';
+import { Button, Input } from '../components/ui';
 import { Loader2 } from 'lucide-react';
 
 export const LoginPage = () => {
