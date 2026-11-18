@@ -67,7 +67,6 @@ export const Layout = () => {
                     : 'text-neutral-600 hover:bg-neutral-100 hover:text-neutral-900'
                   }
                 `}
-                aria-current={({ isActive }) => isActive ? 'page' : undefined}
               >
                 <item.icon className="w-5 h-5 flex-shrink-0" aria-hidden="true" />
                 {item.name}
