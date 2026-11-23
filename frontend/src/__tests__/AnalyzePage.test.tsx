@@ -89,7 +89,7 @@ describe('AnalyzePage', () => {
     )
 
     const submitButton = screen.getByRole('button', { name: /Start Analysis/i })
-    fireEvent.click(submitButton)
+    fireEvent.submit(document.querySelector("form"))
 
     await waitFor(() => {
       expect(toast.error).toHaveBeenCalledWith('Please fill in all required fields')
@@ -111,7 +111,7 @@ describe('AnalyzePage', () => {
     fireEvent.change(screen.getByLabelText('Source Path'), { target: { value: '/path/to/codebase' } })
 
     const submitButton = screen.getByRole('button', { name: /Start Analysis/i })
-    fireEvent.click(submitButton)
+    fireEvent.submit(document.querySelector("form"))
 
     await waitFor(() => {
       expect(analyzeApi.analyzeDesignSystem).toHaveBeenCalledWith({
