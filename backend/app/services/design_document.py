@@ -300,7 +300,7 @@ class DesignDocumentGenerator:
         if scale:
             lines.append("### Typography Tokens")
             lines.append("")
-            for token, value in scale.items():
+            for token, value in sorted(scale.items(), key=lambda x: self._spacing_sort_key(x[0])):
                 lines.append(f"`--font-size-{token}`: `{value}`")
             lines.append("")
 

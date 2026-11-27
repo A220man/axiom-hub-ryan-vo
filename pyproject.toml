@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "axiom-hub-ryan-vo"
-version = "1.4.0"
+version = "1.5.0"
 description = "The design language that makes your AI harness better at design."
 readme = "README.md"
 license = {file = "LICENSE"}
